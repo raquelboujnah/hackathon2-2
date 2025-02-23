@@ -1,0 +1,35 @@
+<!-- page where you can add tasks and track productivity -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+</head>
+<body>
+    <h1>Project Backlog</h1>
+    <form action="/add-task" method="post">
+        <input type="text" name="title" id="assignment-title" required>
+        <textarea name="description" placeholder="Description"></textarea>
+        <input type="url" name="github_link" placeholder="GitHub Link">
+        <button type="submit">Add Assignment</button>
+    </form>
+    <h2>Assignents to Do</h2>
+    <ul>
+        <% tasks.forEach(task=>{%>
+            <li><%= task.title %>
+            <p><strong>Description:</strong> <%= task.description %></p>
+            <p><strong>Link Github:</strong><a href="<%= task.github_link %>" target="_blank"><%=task.github_link%>
+            </a></p>
+
+            <form action="/delete-task/<%= task.id %>" method="post">
+                <button type="submit">Delete</button>
+            </form>
+            </li>
+
+            <%   }) %>
+    </ul>
+
+</body>
+</html>
+
